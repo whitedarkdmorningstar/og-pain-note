@@ -14,6 +14,14 @@ export default function Home() {
   const startRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Reset the stopwatch and pain notes when maxTime changes
+    setElapsed(0);
+    setPainNotes([]);
+    setRunning(false);
+    setPainStarted(false);
+  }, [maxTime]);
+
+  useEffect(() => {
     let interval: any | null = null;
 
     if (running) {
@@ -75,6 +83,7 @@ export default function Home() {
         handlePainEnds={handlePainEnds}
         running={running}
         painStarted={painStarted}
+        maxTime={maxTime}
       />
       <PainNotes painNotes={painNotes} />
     </View>

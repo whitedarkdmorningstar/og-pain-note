@@ -19,4 +19,4 @@ export const DEFAULT_SETTINGS: Settings = {
   maxTime: MAX_TIME,
 };
 
-export const ICON_SIZE = 22;
+export const ICON_SIZE = 24;

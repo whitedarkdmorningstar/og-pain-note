@@ -16,6 +16,7 @@ export default function Card(props: CardProps) {
           padding: spacing.lg,
           borderWidth: 1,
           borderColor: colors.border,
+          position: "relative",
         },
         props.style,
       ]}

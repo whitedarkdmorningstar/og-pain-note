@@ -2,17 +2,16 @@
   "expo": {
     "name": "OG-Pain-Note",
     "slug": "OG-Pain-Note",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "expowhitedarktemplate",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/icon.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#ffffff",
         "foregroundImage": "./assets/icon.png"
       },
       "predictiveBackGestureEnabled": false,
@@ -33,8 +32,7 @@
             "imageWidth": 220
           }
         }
-      ],
-      "expo-sqlite"
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

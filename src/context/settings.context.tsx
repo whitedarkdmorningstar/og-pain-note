@@ -1,6 +1,7 @@
 import { DEFAULT_SETTINGS } from "@/constants/settings";
 import { Settings } from "@/constants/settings/schema";
 import useStoredSettings from "@/hooks/use-stored-settings";
+import { toast } from "@/utils/toast";
 import React, { useCallback } from "react";
 
 export interface SettingsContext extends Settings {
@@ -9,6 +10,7 @@ export interface SettingsContext extends Settings {
     key: keyof Settings,
     value: Settings[keyof Settings],
   ) => void;
+  changeMaxTime: (time: Settings["maxTime"]) => void;
 }
 
 export const settingsContext = React.createContext<SettingsContext | undefined>(
@@ -38,10 +40,24 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     [settings.mode],
   );
 
+  const changeMaxTime = useCallback(
+    (time: Settings["maxTime"]) => {
+      if (time === 60 * 60 * 1000) {
+        toast("Maximum duration is 60 minutes");
+      }
+      if (time === 1 * 60 * 1000) {
+        toast("Minimum duration is 1 minute");
+      }
+      changeSettings("maxTime", time);
+    },
+    [changeSettings],
+  );
+
   const value = {
     ...settings,
     changeThemeMode,
     changeSettings,
+    changeMaxTime,
   };
 
   if (isLoading) return null;

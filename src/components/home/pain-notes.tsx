@@ -1,7 +1,7 @@
 import useTheme from "@/hooks/use-theme";
 import { msToSecond } from "@/utils/msToSecond";
 import { msToTime } from "@/utils/msToTime";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { ScrollView, StyleSheet, TextStyle, View } from "react-native";
 import Text from "../ui/text";
 
@@ -16,6 +16,7 @@ interface PainNotesProps {
 
 export default function PainNotes({ painNotes }: PainNotesProps) {
   const { spacing, borderWidth, borderRadius, colors } = useTheme();
+  const scrollRef = useRef<ScrollView>(null);
 
   const cellStyle: TextStyle = useMemo(
     () => ({ padding: spacing.md, flex: 1, textAlign: "right" }),
@@ -41,19 +42,28 @@ export default function PainNotes({ painNotes }: PainNotesProps) {
         </Text>
       </View>
     ),
-    [],
+    [borderWidth, colors.border, cellStyle],
   );
 
   const summary = useMemo(() => {
     const count = painNotes.length;
     const maxDuration = Math.max(
-      ...painNotes.map(({ start, end }) => (end ? end - start : 0)),
+      ...painNotes.map(({ start, end }) =>
+        end ? msToSecond(end)! - msToSecond(start)! : 0,
+      ),
     );
 
     if (maxDuration === 0 || count === 0) return null;
 
-    return `${count} in 10 minutes with ${msToSecond(maxDuration)} seconds duration`;
+    return `${count} in 10 minutes with ${maxDuration} seconds duration`;
   }, [painNotes]);
+
+  // Scroll to end whenever painNotes length changes
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollToEnd({ animated: true });
+    }
+  }, [painNotes.length]);
 
   return (
     <View
@@ -63,6 +73,7 @@ export default function PainNotes({ painNotes }: PainNotesProps) {
         borderColor: colors.border,
         borderRadius,
         flex: 1,
+        marginBottom: spacing.md,
       }}
     >
       <View
@@ -78,7 +89,9 @@ export default function PainNotes({ painNotes }: PainNotesProps) {
       </View>
 
       <View style={{ flex: 1 }}>
-        <ScrollView>{painNotes.map(renderItem)}</ScrollView>
+        <ScrollView ref={scrollRef} showsVerticalScrollIndicator={true}>
+          {painNotes.map(renderItem)}
+        </ScrollView>
       </View>
 
       {summary !== null && (
