@@ -6,9 +6,10 @@
 
 ### Screenshots
 
-![Screenshot_1](/assets/screenshot_1.png)
-
-![Screenshot_2](/assets/screenshot_2.png)
+<p float="left">
+  <img src="/assets/screenshot_1.png" alt="Screenshot_1" width="300" />
+  <img src="/assets/screenshot_2.png" alt="Screenshot_2" width="300" />
+</p>
 
 ## Author
 
