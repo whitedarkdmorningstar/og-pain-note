@@ -7,7 +7,7 @@
 ### Screenshots
 
 <p float="left">
-  <img src="/assets/screenshot_1.png" alt="Screenshot_1" width="300" />
+  <img src="/assets/screenshot_1.png" alt="Screenshot_1" width="300" style="margin-right: 20px;" />
   <img src="/assets/screenshot_2.png" alt="Screenshot_2" width="300" />
 </p>
 
