@@ -86,5 +86,6 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     margin: 8,
+    elevation: 4,
   },
 });

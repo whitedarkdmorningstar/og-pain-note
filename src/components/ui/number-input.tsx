@@ -1,9 +1,7 @@
-import useTheme from "@/hooks/use-theme";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleProp, TextStyle, View, ViewStyle } from "react-native";
 import IconButton from "./icon-button";
 import Text from "./text";
-import TextInput from "./text-input";
 
 export interface NumberInputProps {
   minimumValue?: number;
@@ -14,7 +12,6 @@ export interface NumberInputProps {
   onValueChange: (value: number) => void;
   nativeNumbers?: string[];
   showButtons?: boolean;
-  disabledTextInput?: boolean;
   textInputStyle?: StyleProp<TextStyle>;
   style?: StyleProp<ViewStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
@@ -28,11 +25,9 @@ export default function NumberInput({
   step = 1,
   onValueChange,
   showButtons = true,
-  disabledTextInput = true,
   textInputStyle,
   style,
   buttonStyle,
-  iconSize = 20,
 }: NumberInputProps) {
   const [internalValue, setInternalValue] = useState<number>(value || 0);
 
@@ -85,8 +80,6 @@ export default function NumberInput({
     }
   }, []);
 
-  const { colors } = useTheme();
-
   useEffect(() => {
     return stopContinuousUpdate;
   }, [stopContinuousUpdate]);
@@ -106,39 +99,27 @@ export default function NumberInput({
       {showButtons && (
         <IconButton
           name="minus"
-          backgroundColor={colors.backdrop}
           delayLongPress={300}
           onPressIn={() => updateValue(-step)}
           onLongPress={() => startContinuousUpdate(-step)}
           onPressOut={stopContinuousUpdate}
           style={buttonStyle}
-          size={iconSize}
         />
       )}
-      {disabledTextInput ? (
-        <Text
-          style={[{ textAlign: "center", marginHorizontal: 4 }, textInputStyle]}
-        >
-          {label}
-        </Text>
-      ) : (
-        <TextInput
-          keyboardType="numeric"
-          value={label.toString()}
-          textInputStyle={[{ textAlign: "center" }, textInputStyle]}
-          onChangeText={onChangeText}
-        />
-      )}
+      <Text
+        style={[{ textAlign: "center", marginHorizontal: 4 }, textInputStyle]}
+      >
+        {label}
+      </Text>
+
       {showButtons && (
         <IconButton
           name={"plus"}
           delayLongPress={300}
-          backgroundColor={colors.backdrop}
           onPressIn={() => updateValue(step)}
           onLongPress={() => startContinuousUpdate(step)}
           onPressOut={stopContinuousUpdate}
           style={buttonStyle}
-          size={iconSize}
         />
       )}
     </View>

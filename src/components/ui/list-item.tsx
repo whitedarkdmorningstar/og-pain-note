@@ -1,5 +1,4 @@
 import useTheme from "@/hooks/use-theme";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useMemo } from "react";
 import {
   StyleProp,
@@ -14,26 +13,12 @@ import {
 export interface ListItemProps extends TouchableOpacityProps {
   title: string;
   titleStyle?: StyleProp<TextStyle>;
-  subtitle?: string;
-  subtitleStyle?: StyleProp<TextStyle>;
-  description?: string;
-  descriptionStyle?: StyleProp<TextStyle>;
-  icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
-  size?: React.ComponentProps<typeof MaterialCommunityIcons>["size"];
-  color?: React.ComponentProps<typeof MaterialCommunityIcons>["color"];
   right?: React.ReactNode;
 }
 
 export default function ListItem({
   title,
   titleStyle,
-  subtitle,
-  subtitleStyle,
-  description,
-  descriptionStyle,
-  icon,
-  size,
-  color,
   style,
   right,
   ...props
@@ -69,36 +54,7 @@ export default function ListItem({
           >
             {title}
           </Text>
-          {subtitle && (
-            <Text
-              style={[
-                { color: colors.text, fontSize: fontSize.label },
-                subtitleStyle,
-              ]}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            >
-              {subtitle}
-            </Text>
-          )}
-          {description && (
-            <Text
-              style={[
-                { color: colors.text, fontSize: fontSize.label },
-                descriptionStyle,
-              ]}
-            >
-              {description}
-            </Text>
-          )}
         </View>
-        {icon && (
-          <MaterialCommunityIcons
-            name={icon}
-            size={size || iconSize}
-            color={color || colors.text}
-          />
-        )}
         {right}
       </View>
     </TouchableOpacity>

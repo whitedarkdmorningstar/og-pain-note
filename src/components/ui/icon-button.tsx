@@ -1,5 +1,5 @@
 import useTheme from "@/hooks/use-theme";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialDesignIcons } from "@react-native-vector-icons/material-design-icons";
 import React from "react";
 import {
   StyleSheet,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 export interface IconButtonProps extends TouchableHighlightProps {
-  name: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+  name: React.ComponentProps<typeof MaterialDesignIcons>["name"];
 }
 
 export default function IconButton({
@@ -23,13 +23,9 @@ export default function IconButton({
       underlayColor={colors.border}
       onPress={onPress}
       {...rest}
-      style={[
-        { padding: spacing.md + 2, backgroundColor: colors.backdrop },
-        styles.btn,
-        rest.style,
-      ]}
+      style={[{ backgroundColor: colors.backdrop }, styles.btn, rest.style]}
     >
-      <MaterialCommunityIcons
+      <MaterialDesignIcons
         name={name}
         size={iconSize}
         color={rest.disabled ? colors.disabled : colors.text}
@@ -41,8 +37,8 @@ export default function IconButton({
 const styles = StyleSheet.create({
   btn: {
     borderRadius: 100,
-    elevation: 4,
-    flex: 1,
+    width: 44,
+    height: 44,
     alignItems: "center",
     justifyContent: "center",
   },

@@ -1,9 +1,7 @@
 import { TW_COLORS, Variant } from "@/constants/theme";
 import useTheme from "@/hooks/use-theme";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
-  ActivityIndicator,
   StyleProp,
   Text,
   TextStyle,
@@ -18,8 +16,6 @@ export interface ButtonProps extends TouchableHighlightProps {
   mode?: "outline" | "contained";
   loading?: boolean;
   reverse?: boolean;
-  icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
-  size?: React.ComponentProps<typeof MaterialCommunityIcons>["size"];
   textStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
 }
@@ -88,19 +84,6 @@ export default function Button({
   return (
     <TouchableHighlight {...props} style={[btnStyle, props.containerStyle]}>
       <View style={[continerStyle, style]}>
-        {loading ? (
-          <ActivityIndicator animating color={textColor} />
-        ) : (
-          props.icon && (
-            <MaterialCommunityIcons
-              name={props.icon}
-              size={props.size || iconSize}
-              color={
-                mode === "outline" ? colors[variant] : TW_COLORS.gray["50"]
-              }
-            />
-          )
-        )}
         <Text style={[textStyle, props.textStyle]}>{props.children}</Text>
       </View>
     </TouchableHighlight>
