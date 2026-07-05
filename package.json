@@ -1,6 +1,7 @@
 {
   "name": "og-pain-note",
   "main": "expo-router/entry",
+  "homepage": "https://whitedarkdmorningstar.github.io",
   "version": "0.0.4",
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",
