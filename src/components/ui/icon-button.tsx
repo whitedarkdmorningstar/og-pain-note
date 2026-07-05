@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   TouchableHighlightProps,
 } from "react-native";
+import Icon from "./icon";
 
 export interface IconButtonProps extends TouchableHighlightProps {
   name: React.ComponentProps<typeof MaterialDesignIcons>["name"];
@@ -25,7 +26,7 @@ export default function IconButton({
       {...rest}
       style={[{ backgroundColor: colors.backdrop }, styles.btn, rest.style]}
     >
-      <MaterialDesignIcons
+      <Icon
         name={name}
         size={iconSize}
         color={rest.disabled ? colors.disabled : colors.text}

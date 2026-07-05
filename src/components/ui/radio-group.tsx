@@ -1,5 +1,4 @@
 import useTheme from "@/hooks/use-theme";
-import { MaterialDesignIcons } from "@react-native-vector-icons/material-design-icons";
 import React from "react";
 import {
   Pressable,
@@ -9,6 +8,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import Icon from "./icon";
 
 type Option = {
   label: string | number;
@@ -70,7 +70,7 @@ export default function RadioGroup({
             >
               {label}
             </Text>
-            <MaterialDesignIcons
+            <Icon
               name={value === itemValue ? "radiobox-marked" : "radiobox-blank"}
               size={iconSize}
               color={value === itemValue ? colors.primary : colors.disabled}
