@@ -1,7 +1,7 @@
 {
   "name": "og-pain-note",
   "main": "expo-router/entry",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-vector-icons/material-design-icons": "^13.1.2",
@@ -14,6 +14,7 @@
     "expo-status-bar": "~56.0.4",
     "expo-system-ui": "~56.0.5",
     "expo-web-browser": "~56.0.5",
+    "gh-pages": "^6.3.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.85.3",
@@ -40,7 +41,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "build": "eas build --platform android --profile local"
+    "build": "eas build --platform android --profile local",
+    "predeploy": "npx expo export -p web",
+    "deploy": "npx gh-pages --nojekyll -d dist"
   },
   "private": false
 }
